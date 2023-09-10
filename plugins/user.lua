@@ -7,7 +7,11 @@ return {
     "linux-cultist/venv-selector.nvim",
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
     event = "VeryLazy",
-    config = true,
+    config = function ()
+      require("venv-selector").setup({
+        changed_venv_hooks = { require("venv-selector").hooks.pyright }
+      })
+    end,
     keys = {{
       "<leader>vs", "<cmd>:VenvSelect<cr>",
       "<leader>vc", "<cmd>:VenvSelectCached<cr>"
@@ -36,4 +40,5 @@ return {
     end,
   },
   "tweekmonster/django-plus.vim",
+  "fatih/vim-go"
 }
